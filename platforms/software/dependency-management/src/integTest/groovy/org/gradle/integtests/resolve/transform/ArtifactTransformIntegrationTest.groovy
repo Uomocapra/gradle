@@ -24,6 +24,7 @@ import org.gradle.integtests.fixtures.resolve.ResolveTestFixture
 import org.gradle.internal.file.FileType
 import org.gradle.operations.dependencies.transforms.ExecutePlannedTransformStepBuildOperationType
 import org.gradle.test.fixtures.maven.MavenFileRepository
+import org.gradle.util.GradleVersion
 import org.hamcrest.Matcher
 import spock.lang.Issue
 
@@ -483,11 +484,14 @@ class ArtifactTransformIntegrationTest extends AbstractHttpDependencyResolutionT
                 }
 
                 configurations {
-                    compile.outgoing.variants {
-                        files {
-                            attributes.attribute(Attribute.of('artifactType', String), 'jar')
-                            artifact tasks.jar1
-                            artifact tasks.zip1
+                    compile {
+                        attributes.attribute(Attribute.of('artifactType', String), 'mismatch')
+                        outgoing.variants {
+                            files {
+                                attributes.attribute(Attribute.of('artifactType', String), 'jar')
+                                artifact jar1
+                                artifact zip1
+                            }
                         }
                     }
                 }
@@ -504,6 +508,7 @@ class ArtifactTransformIntegrationTest extends AbstractHttpDependencyResolutionT
         """
 
         when:
+        executer.expectDeprecationWarning("The configuration ':lib:compile' has no artifacts and thus should not define any secondary variants. This behavior has been deprecated. This behavior is scheduled to be removed in Gradle 9.0. Secondary variant(s): 'files' should be made directly consumable. Consult the upgrading guide for further information: https://docs.gradle.org/${GradleVersion.current().version}/userguide/upgrading_version_8.html#variants_with_no_artifacts")
         run "resolve"
 
         then:
@@ -520,6 +525,7 @@ class ArtifactTransformIntegrationTest extends AbstractHttpDependencyResolutionT
         output.count("Transforming lib2.zip to lib2.zip.txt") == 1
 
         when:
+        executer.expectDeprecationWarning("The configuration ':lib:compile' has no artifacts and thus should not define any secondary variants. This behavior has been deprecated. This behavior is scheduled to be removed in Gradle 9.0. Secondary variant(s): 'files' should be made directly consumable. Consult the upgrading guide for further information: https://docs.gradle.org/${GradleVersion.current().version}/userguide/upgrading_version_8.html#variants_with_no_artifacts")
         run "resolve"
 
         then:
@@ -612,6 +618,7 @@ class ArtifactTransformIntegrationTest extends AbstractHttpDependencyResolutionT
         """
 
         when:
+        executer.expectDeprecationWarning("The configuration ':lib:compile' has no artifacts and thus should not define any secondary variants. This behavior has been deprecated. This behavior is scheduled to be removed in Gradle 9.0. Secondary variant(s): 'files' should be made directly consumable. Consult the upgrading guide for further information: https://docs.gradle.org/${GradleVersion.current().version}/userguide/upgrading_version_8.html#variants_with_no_artifacts")
         run "resolve"
 
         then:
@@ -651,16 +658,19 @@ class ArtifactTransformIntegrationTest extends AbstractHttpDependencyResolutionT
                 }
 
                 configurations {
-                    compile.outgoing.variants {
-                        java7 {
-                            attributes.attribute(Attribute.of('javaVersion', String), '7')
-                            attributes.attribute(Attribute.of('color', String), 'green')
-                            artifact tasks.jar1
-                        }
-                        java8 {
-                            attributes.attribute(Attribute.of('javaVersion', String), '8')
-                            attributes.attribute(Attribute.of('color', String), 'red')
-                            artifact tasks.jar2
+                    compile {
+                        attributes.attribute(Attribute.of('color', String), 'mismatch')
+                        outgoing.variants {
+                            java7 {
+                                attributes.attribute(Attribute.of('javaVersion', String), '7')
+                                attributes.attribute(Attribute.of('color', String), 'green')
+                                artifact jar1
+                            }
+                            java8 {
+                                attributes.attribute(Attribute.of('javaVersion', String), '8')
+                                attributes.attribute(Attribute.of('color', String), 'red')
+                                artifact jar2
+                            }
                         }
                     }
                 }
@@ -709,6 +719,7 @@ class ArtifactTransformIntegrationTest extends AbstractHttpDependencyResolutionT
         """
 
         when:
+        executer.expectDeprecationWarning("The configuration ':lib:compile' has no artifacts and thus should not define any secondary variants. This behavior has been deprecated. This behavior is scheduled to be removed in Gradle 9.0. Secondary variant(s): 'java7', 'java8' should be made directly consumable. Consult the upgrading guide for further information: https://docs.gradle.org/${GradleVersion.current().version}/userguide/upgrading_version_8.html#variants_with_no_artifacts")
         run "resolve"
 
         then:
@@ -723,6 +734,7 @@ class ArtifactTransformIntegrationTest extends AbstractHttpDependencyResolutionT
         output.count("Transforming lib1.jar to lib1.jar.red") == 1
 
         when:
+        executer.expectDeprecationWarning("The configuration ':lib:compile' has no artifacts and thus should not define any secondary variants. This behavior has been deprecated. This behavior is scheduled to be removed in Gradle 9.0. Secondary variant(s): 'java7', 'java8' should be made directly consumable. Consult the upgrading guide for further information: https://docs.gradle.org/${GradleVersion.current().version}/userguide/upgrading_version_8.html#variants_with_no_artifacts")
         run "resolve"
 
         then:
@@ -756,16 +768,19 @@ class ArtifactTransformIntegrationTest extends AbstractHttpDependencyResolutionT
                 }
 
                 configurations {
-                    compile.outgoing.variants {
-                        java7 {
-                            attributes.attribute(Attribute.of('javaVersion', String), '7')
-                            attributes.attribute(Attribute.of('color', String), 'green')
-                            artifact tasks.jar1
-                        }
-                        java8 {
-                            attributes.attribute(Attribute.of('javaVersion', String), '8')
-                            attributes.attribute(Attribute.of('color', String), 'red')
-                            artifact tasks.jar2
+                    compile {
+                        attributes.attribute(Attribute.of('color', String), 'mismatch')
+                        outgoing.variants {
+                            java7 {
+                                attributes.attribute(Attribute.of('javaVersion', String), '7')
+                                attributes.attribute(Attribute.of('color', String), 'green')
+                                artifact jar1
+                            }
+                            java8 {
+                                attributes.attribute(Attribute.of('javaVersion', String), '8')
+                                attributes.attribute(Attribute.of('color', String), 'red')
+                                artifact jar2
+                            }
                         }
                     }
                 }
@@ -836,6 +851,7 @@ class ArtifactTransformIntegrationTest extends AbstractHttpDependencyResolutionT
         """
 
         when:
+        executer.expectDeprecationWarning("The configuration ':lib:compile' has no artifacts and thus should not define any secondary variants. This behavior has been deprecated. This behavior is scheduled to be removed in Gradle 9.0. Secondary variant(s): 'java7', 'java8' should be made directly consumable. Consult the upgrading guide for further information: https://docs.gradle.org/${GradleVersion.current().version}/userguide/upgrading_version_8.html#variants_with_no_artifacts")
         run "resolve"
 
         then:
@@ -856,6 +872,7 @@ class ArtifactTransformIntegrationTest extends AbstractHttpDependencyResolutionT
         output.count("Transforming lib1.jar.blue to lib1.jar.blue.red") == 1
 
         when:
+        executer.expectDeprecationWarning("The configuration ':lib:compile' has no artifacts and thus should not define any secondary variants. This behavior has been deprecated. This behavior is scheduled to be removed in Gradle 9.0. Secondary variant(s): 'java7', 'java8' should be made directly consumable. Consult the upgrading guide for further information: https://docs.gradle.org/${GradleVersion.current().version}/userguide/upgrading_version_8.html#variants_with_no_artifacts")
         run "resolve"
 
         then:
@@ -1078,19 +1095,22 @@ class ArtifactTransformIntegrationTest extends AbstractHttpDependencyResolutionT
                     archiveFileName = 'lib.jar'
                 }
 
-                configurations.compile.outgoing.variants{
-                    primary {
-                        attributes {
-                            attribute(artifactType, "jar")
-                            attribute(extraAttribute, "preferred")
+                configurations.compile {
+                    attributes.attribute(Attribute.of('artifactType', String), 'mismatch')
+                    outgoing.variants{
+                        primary {
+                            attributes {
+                                attribute(artifactType, "jar")
+                                attribute(extraAttribute, "preferred")
+                            }
+                            artifact jar
                         }
-                        artifact tasks.jar
-                    }
-                    secondary {
-                        attributes {
-                            attribute(artifactType, "intermediate")
+                        secondary {
+                            attributes {
+                                attribute(artifactType, "intermediate")
+                            }
+                            artifact jar
                         }
-                        artifact tasks.jar
                     }
                 }
             }
@@ -1149,6 +1169,7 @@ class ArtifactTransformIntegrationTest extends AbstractHttpDependencyResolutionT
         """
 
         when:
+        executer.expectDeprecationWarning("The configuration ':lib:compile' has no artifacts and thus should not define any secondary variants. This behavior has been deprecated. This behavior is scheduled to be removed in Gradle 9.0. Secondary variant(s): 'primary', 'secondary' should be made directly consumable. Consult the upgrading guide for further information: https://docs.gradle.org/${GradleVersion.current().version}/userguide/upgrading_version_8.html#variants_with_no_artifacts")
         succeeds ":app:resolve"
 
         then:
@@ -1353,21 +1374,24 @@ Found the following transformation chains:
                 }
 
                 configurations {
-                    compile.outgoing.variants {
-                        variant1 {
-                            attributes.attribute(buildType, 'release')
-                            attributes.attribute(flavor, 'free')
-                            artifact tasks.jar1
-                        }
-                        variant2 {
-                            attributes.attribute(buildType, 'release')
-                            attributes.attribute(flavor, 'paid')
-                            artifact tasks.jar1
-                        }
-                        variant3 {
-                            attributes.attribute(buildType, 'debug')
-                            attributes.attribute(flavor, 'free')
-                            artifact tasks.jar1
+                    compile {
+                        outgoing.artifact file('dummy.txt')
+                        outgoing.variants {
+                            variant1 {
+                                attributes.attribute(buildType, 'release')
+                                attributes.attribute(flavor, 'free')
+                                artifact jar1
+                            }
+                            variant2 {
+                                attributes.attribute(buildType, 'release')
+                                attributes.attribute(flavor, 'paid')
+                                artifact jar1
+                            }
+                            variant3 {
+                                attributes.attribute(buildType, 'debug')
+                                attributes.attribute(flavor, 'free')
+                                artifact jar1
+                            }
                         }
                     }
                 }
