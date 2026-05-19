@@ -35,6 +35,7 @@ import org.gradle.nativeplatform.toolchain.internal.PlatformToolProvider;
 
 import javax.inject.Inject;
 
+@SuppressWarnings("deprecation")
 public abstract class DefaultCppTestSuite extends DefaultCppComponent implements CppTestSuite {
     private final Property<CppComponent> testedComponent;
     private final Property<CppTestExecutable> testBinary;

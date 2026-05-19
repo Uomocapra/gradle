@@ -50,6 +50,7 @@ import org.jspecify.annotations.Nullable;
 import javax.inject.Inject;
 import java.util.Set;
 
+@SuppressWarnings("deprecation")
 public class DefaultSwiftStaticLibrary extends DefaultSwiftBinary implements SwiftStaticLibrary, ConfigurableComponentWithStaticLibrary, ConfigurableComponentWithLinkUsage, ConfigurableComponentWithRuntimeUsage, SoftwareComponentInternal {
     private final RegularFileProperty linkFile;
     private final Property<Task> linkFileProducer;

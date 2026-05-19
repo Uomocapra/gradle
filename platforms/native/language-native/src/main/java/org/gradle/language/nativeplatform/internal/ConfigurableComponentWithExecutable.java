@@ -33,6 +33,7 @@ import org.gradle.nativeplatform.toolchain.internal.PlatformToolProvider;
 /**
  * A configurable view of a component that produces an executable and installation. This should become public in some form.
  */
+@SuppressWarnings("deprecation")
 public interface ConfigurableComponentWithExecutable extends ComponentWithExecutable, ComponentWithInstallation, ComponentWithObjectFiles, ComponentWithOutputs, ComponentWithNames {
     PlatformToolProvider getPlatformToolProvider();
 

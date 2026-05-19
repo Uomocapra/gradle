@@ -45,6 +45,7 @@ import org.gradle.testing.base.TestSuite;
  * @since 7.3
  */
 @Incubating
+@SuppressWarnings("deprecation")
 public interface JvmTestSuite extends TestSuite, Buildable {
 
     // TODO: Rename to getSourceSet next time changes are made in this area.

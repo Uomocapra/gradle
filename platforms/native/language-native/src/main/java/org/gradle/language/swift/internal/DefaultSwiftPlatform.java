@@ -21,6 +21,7 @@ import org.gradle.language.swift.SwiftVersion;
 import org.gradle.nativeplatform.TargetMachine;
 import org.gradle.nativeplatform.platform.NativePlatform;
 
+@SuppressWarnings("deprecation")
 public class DefaultSwiftPlatform implements SwiftPlatform {
     private final TargetMachine targetMachine;
     private final NativePlatform nativePlatform;

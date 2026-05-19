@@ -50,6 +50,7 @@ import java.util.concurrent.Callable;
  * @since 4.5
  */
 @Incubating
+@SuppressWarnings("deprecation")
 public abstract class NativeTestingBasePlugin implements Plugin<Project> {
     private final TargetMachineFactory targetMachineFactory;
 

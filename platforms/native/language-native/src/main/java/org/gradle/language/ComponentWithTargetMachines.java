@@ -24,6 +24,7 @@ import org.gradle.nativeplatform.TargetMachine;
  *
  * @since 5.2
  */
+@SuppressWarnings("deprecation")
 public interface ComponentWithTargetMachines {
     /**
      * Specifies the target machines this component should be built for.  The "machines" extension property (see {@link org.gradle.nativeplatform.TargetMachineFactory}) can be used to construct common operating system and architecture combinations.

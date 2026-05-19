@@ -24,6 +24,7 @@ import org.gradle.util.internal.CollectionUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("deprecation")
 public class DefaultPlatformResolvers implements PlatformResolvers {
     private final List<PlatformResolver<?>> platformResolvers = new ArrayList<>();
     private final PlatformContainer platforms;

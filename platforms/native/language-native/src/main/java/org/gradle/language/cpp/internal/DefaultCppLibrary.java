@@ -45,6 +45,7 @@ import org.gradle.nativeplatform.toolchain.internal.PlatformToolProvider;
 import javax.inject.Inject;
 import java.util.Collections;
 
+@SuppressWarnings("deprecation")
 public abstract class DefaultCppLibrary extends DefaultCppComponent implements CppLibrary, PublicationAwareComponent {
     private final FileCollection publicHeadersWithConvention;
     private final NamedDomainObjectProvider<ConsumableConfiguration> apiElements;

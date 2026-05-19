@@ -23,6 +23,7 @@ import org.gradle.nativeplatform.TargetMachine;
  *
  * @since 5.2
  */
+@SuppressWarnings("deprecation")
 public interface SwiftPlatform {
     /**
      * Returns the target machine for this platform.

@@ -60,6 +60,7 @@ import java.util.Set;
 import static org.gradle.language.cpp.CppBinary.DEBUGGABLE_ATTRIBUTE;
 import static org.gradle.language.cpp.CppBinary.OPTIMIZED_ATTRIBUTE;
 
+@SuppressWarnings("deprecation")
 public class DefaultSwiftBinary extends DefaultNativeBinary implements SwiftBinary {
     private final NativeDependencyCache nativeDependencyCache;
     private final NativeVariantIdentity identity;

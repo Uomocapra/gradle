@@ -27,6 +27,7 @@ import org.gradle.language.nativeplatform.ComponentWithInstallation;
  *
  * @since 4.2
  */
+@SuppressWarnings("deprecation")
 public interface SwiftExecutable extends SwiftBinary, ComponentWithExecutable, ComponentWithInstallation, ComponentWithOutputs {
     /**
      * Returns the executable file to use with a debugger for this binary.

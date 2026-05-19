@@ -39,6 +39,7 @@ import org.gradle.testing.base.plugins.TestSuiteBasePlugin;
  * @see <a href="https://docs.gradle.org/current/userguide/jvm_test_suite_plugin.html">Test Suite plugin reference</a>
  */
 @Incubating
+@SuppressWarnings("deprecation")
 public abstract class JvmTestSuitePlugin implements Plugin<Project> {
     public static final String DEFAULT_TEST_SUITE_NAME = "test";
 

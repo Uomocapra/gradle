@@ -32,6 +32,7 @@ import org.gradle.testing.base.TestingExtension;
  * This class exists to avoid adding these methods to the plugin itself,
  * and thus avoids adding these methods to the public API.
  */
+@SuppressWarnings("deprecation")
 public class JavaPluginHelper {
 
     private JavaPluginHelper() {

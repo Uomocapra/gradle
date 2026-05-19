@@ -23,6 +23,7 @@ import org.gradle.nativeplatform.TargetMachine;
  *
  * @since 4.5
  */
+@SuppressWarnings("deprecation")
 public interface CppPlatform {
     /**
      * Returns the target machine for this platform.

@@ -51,6 +51,7 @@ import static org.gradle.api.internal.lambdas.SerializableLambdas.spec;
  * @see <a href="https://docs.gradle.org/current/userguide/test_report_aggregation_plugin.html">Test Report Aggregation Plugin reference</a>
  */
 @Incubating
+@SuppressWarnings("deprecation")
 public abstract class TestReportAggregationPlugin implements Plugin<Project> {
 
     public static final String TEST_REPORT_AGGREGATION_CONFIGURATION_NAME = "testReportAggregation";

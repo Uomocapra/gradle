@@ -24,5 +24,6 @@ import org.gradle.language.nativeplatform.ComponentWithInstallation;
  *
  * @since 4.5
  */
+@SuppressWarnings("deprecation")
 public interface SwiftXCTestExecutable extends SwiftXCTestBinary, ComponentWithExecutable, ComponentWithInstallation {
 }

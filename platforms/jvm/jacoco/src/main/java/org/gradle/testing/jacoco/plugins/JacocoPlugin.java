@@ -60,6 +60,7 @@ import static org.gradle.api.internal.lambdas.SerializableLambdas.action;
  *
  * @see <a href="https://docs.gradle.org/current/userguide/jacoco_plugin.html">JaCoCo plugin reference</a>
  */
+@SuppressWarnings("deprecation")
 public abstract class JacocoPlugin implements Plugin<Project> {
 
     /**

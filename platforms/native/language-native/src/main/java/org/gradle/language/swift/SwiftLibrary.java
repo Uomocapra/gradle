@@ -28,6 +28,7 @@ import org.gradle.nativeplatform.Linkage;
  *
  * @since 4.2
  */
+@SuppressWarnings("deprecation")
 public interface SwiftLibrary extends ProductionSwiftComponent {
     /**
      * Returns the dependencies of this library.

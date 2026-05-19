@@ -36,6 +36,7 @@ import org.gradle.util.internal.VersionNumber;
 
 import javax.inject.Inject;
 
+@SuppressWarnings("deprecation")
 public class DefaultToolChainSelector implements ToolChainSelector {
     private final NativeToolChainRegistry registry;
     private DefaultNativePlatform host;

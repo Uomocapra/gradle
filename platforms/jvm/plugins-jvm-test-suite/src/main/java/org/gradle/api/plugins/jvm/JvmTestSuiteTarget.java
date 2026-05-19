@@ -29,6 +29,7 @@ import org.gradle.testing.base.TestSuiteTarget;
  * @since 7.3
  */
 @Incubating
+@SuppressWarnings("deprecation")
 public interface JvmTestSuiteTarget extends TestSuiteTarget, Named {
     /**
      * The {@link Test} task that runs the tests for the associated test suite.

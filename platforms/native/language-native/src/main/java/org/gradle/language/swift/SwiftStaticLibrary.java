@@ -26,5 +26,6 @@ import org.gradle.language.nativeplatform.ComponentWithStaticLibrary;
  *
  * @since 4.5
  */
+@SuppressWarnings("deprecation")
 public interface SwiftStaticLibrary extends SwiftBinary, ComponentWithStaticLibrary, ComponentWithRuntimeUsage, ComponentWithLinkUsage, ComponentWithOutputs {
 }

@@ -51,6 +51,7 @@ import static org.gradle.language.cpp.CppBinary.OPTIMIZED_ATTRIBUTE;
 import static org.gradle.nativeplatform.MachineArchitecture.ARCHITECTURE_ATTRIBUTE;
 import static org.gradle.nativeplatform.OperatingSystemFamily.OPERATING_SYSTEM_ATTRIBUTE;
 
+@SuppressWarnings("deprecation")
 public class Dimensions {
     public static String createDimensionSuffix(Named dimensionValue, Collection<?> multivalueProperty) {
         return createDimensionSuffix(dimensionValue.getName(), multivalueProperty);

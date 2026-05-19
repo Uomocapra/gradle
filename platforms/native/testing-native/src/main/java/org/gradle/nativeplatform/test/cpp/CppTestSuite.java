@@ -25,6 +25,7 @@ import org.gradle.nativeplatform.test.TestSuiteComponent;
  *
  * @since 4.4
  */
+@SuppressWarnings("deprecation")
 public interface CppTestSuite extends CppComponent, TestSuiteComponent {
     /**
      * {@inheritDoc}

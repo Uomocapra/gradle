@@ -38,6 +38,7 @@ import org.gradle.testing.base.TestSuite;
  * Even though the single implementation of this interface also implements {@link org.gradle.api.component.AdhocComponentWithVariants},
  * we do not want to extend that interface here, as it is slated for removal.
  */
+@SuppressWarnings("deprecation")
 public interface JvmSoftwareComponentInternal extends SoftwareComponent {
 
     // TODO: These with* names are not ideally named. Traditionally, "withers" create a new

@@ -32,6 +32,7 @@ import org.gradle.nativeplatform.Linkage;
  *
  * @since 4.2
  */
+@SuppressWarnings("deprecation")
 public interface CppLibrary extends ProductionCppComponent {
     /**
      * Defines the public header file directories of this library.

@@ -50,6 +50,7 @@ import javax.inject.Inject;
 import java.util.Collections;
 import java.util.Set;
 
+@SuppressWarnings("deprecation")
 public class DefaultSwiftExecutable extends DefaultSwiftBinary implements SwiftExecutable, ConfigurableComponentWithExecutable, ConfigurableComponentWithRuntimeUsage, SoftwareComponentInternal {
     private final RegularFileProperty executableFile;
     private final Property<Task> executableFileProducer;

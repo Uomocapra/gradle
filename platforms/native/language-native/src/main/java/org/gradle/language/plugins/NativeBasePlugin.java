@@ -117,6 +117,7 @@ import static org.gradle.language.cpp.CppBinary.LINKAGE_ATTRIBUTE;
  * @since 4.5
  */
 @Incubating
+@SuppressWarnings("deprecation")
 public abstract class NativeBasePlugin implements Plugin<Project> {
     private final TargetMachineFactory targetMachineFactory;
 

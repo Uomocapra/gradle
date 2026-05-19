@@ -31,6 +31,7 @@ import spock.lang.Specification
 import javax.inject.Inject
 
 @UsesNativeServices
+@SuppressWarnings("deprecation")
 class DefaultNativeBinaryTest extends Specification {
     @Rule
     TestNameTestDirectoryProvider tmpDir = new TestNameTestDirectoryProvider(getClass())

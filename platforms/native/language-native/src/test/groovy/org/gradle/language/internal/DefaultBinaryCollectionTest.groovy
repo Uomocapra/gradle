@@ -23,6 +23,7 @@ import org.gradle.language.swift.SwiftBinary
 import org.gradle.language.swift.SwiftSharedLibrary
 import spock.lang.Specification
 
+@SuppressWarnings("deprecation")
 class DefaultBinaryCollectionTest extends Specification {
     def container = new DefaultBinaryCollection(SwiftBinary)
 

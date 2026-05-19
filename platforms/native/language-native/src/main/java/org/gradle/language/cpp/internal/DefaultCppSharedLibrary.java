@@ -46,6 +46,7 @@ import org.jspecify.annotations.Nullable;
 import javax.inject.Inject;
 import java.util.Set;
 
+@SuppressWarnings("deprecation")
 public class DefaultCppSharedLibrary extends DefaultCppBinary implements CppSharedLibrary, ConfigurableComponentWithSharedLibrary, ConfigurableComponentWithLinkUsage, ConfigurableComponentWithRuntimeUsage, SoftwareComponentInternal {
     private final RegularFileProperty linkFile;
     private final Property<Task> linkFileProducer;

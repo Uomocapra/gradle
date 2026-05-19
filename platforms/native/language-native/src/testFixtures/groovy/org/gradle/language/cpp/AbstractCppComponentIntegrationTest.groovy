@@ -22,6 +22,7 @@ import org.gradle.nativeplatform.fixtures.RequiresInstalledToolChain
 import org.gradle.nativeplatform.fixtures.ToolChainRequirement
 import org.gradle.util.internal.GUtil
 
+@SuppressWarnings("deprecation")
 abstract class AbstractCppComponentIntegrationTest extends AbstractNativeLanguageComponentIntegrationTest {
     def "can build on current operating system family and architecture when explicitly specified"() {
         given:

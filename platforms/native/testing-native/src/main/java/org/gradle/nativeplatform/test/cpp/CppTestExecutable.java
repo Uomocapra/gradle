@@ -28,6 +28,7 @@ import org.gradle.nativeplatform.test.tasks.RunTestExecutable;
  *
  * @since 4.5
  */
+@SuppressWarnings("deprecation")
 public interface CppTestExecutable extends CppBinary, ComponentWithExecutable, ComponentWithInstallation, TestComponent {
     /**
      * {@inheritDoc}

@@ -28,6 +28,7 @@ import org.jspecify.annotations.Nullable;
 /**
  * A configurable view of a component that has a runtime usage. This should become public in some form.
  */
+@SuppressWarnings("deprecation")
 public interface ConfigurableComponentWithRuntimeUsage extends ComponentWithRuntimeUsage, ComponentWithNames {
     Configuration getImplementationDependencies();
 

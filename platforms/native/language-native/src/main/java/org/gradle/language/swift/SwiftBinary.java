@@ -28,6 +28,7 @@ import org.gradle.language.swift.tasks.SwiftCompile;
  *
  * @since 4.2
  */
+@SuppressWarnings("deprecation")
 public interface SwiftBinary extends ComponentWithObjectFiles, ComponentWithDependencies {
     /**
      * Returns the name of the Swift module that this binary defines.

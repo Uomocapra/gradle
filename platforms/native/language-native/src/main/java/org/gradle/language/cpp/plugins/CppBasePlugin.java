@@ -48,6 +48,7 @@ import java.util.concurrent.Callable;
  * @since 4.1
  */
 @NullMarked
+@SuppressWarnings("deprecation")
 public abstract class CppBasePlugin implements Plugin<Project> {
     private final ProjectPublicationRegistry publicationRegistry;
 

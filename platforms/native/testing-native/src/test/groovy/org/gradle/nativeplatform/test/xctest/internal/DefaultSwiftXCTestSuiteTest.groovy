@@ -31,6 +31,7 @@ import org.junit.Rule
 import spock.lang.Specification
 
 @UsesNativeServices
+@SuppressWarnings("deprecation")
 class DefaultSwiftXCTestSuiteTest extends Specification {
     @Rule
     TestNameTestDirectoryProvider tmpDir = new TestNameTestDirectoryProvider(getClass())

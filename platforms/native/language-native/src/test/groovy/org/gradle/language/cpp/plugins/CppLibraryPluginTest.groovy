@@ -36,6 +36,7 @@ import spock.lang.Specification
 
 @UsesNativeServices
 @Ignore("https://github.com/gradle/gradle-private/issues/3818")
+@SuppressWarnings("deprecation")
 class CppLibraryPluginTest extends Specification {
     @Rule
     TestNameTestDirectoryProvider tmpDir = new TestNameTestDirectoryProvider(getClass())

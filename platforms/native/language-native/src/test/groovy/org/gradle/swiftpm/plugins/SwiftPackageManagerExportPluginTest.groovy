@@ -26,6 +26,7 @@ import org.gradle.testfixtures.ProjectBuilder
 import org.junit.Rule
 import spock.lang.Specification
 
+@SuppressWarnings("deprecation")
 class SwiftPackageManagerExportPluginTest extends Specification {
     @Rule
     TestNameTestDirectoryProvider tmpDir = new TestNameTestDirectoryProvider(getClass())

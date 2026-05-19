@@ -45,6 +45,7 @@ import org.gradle.nativeplatform.toolchain.internal.PlatformToolProvider;
 import javax.inject.Inject;
 import java.util.concurrent.Callable;
 
+@SuppressWarnings("deprecation")
 public class DefaultCppTestExecutable extends DefaultCppBinary implements CppTestExecutable, ConfigurableComponentWithExecutable {
     private final ProjectLayout projectLayout;
     private final Provider<CppComponent> testedComponent;

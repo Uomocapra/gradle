@@ -24,6 +24,7 @@ import org.gradle.nativeplatform.TargetMachine;
 import org.gradle.nativeplatform.TargetMachineFactory;
 import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform;
 
+@SuppressWarnings("deprecation")
 public class DefaultTargetMachineFactory implements TargetMachineFactory {
     private final ObjectFactory objectFactory;
 

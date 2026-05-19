@@ -49,6 +49,7 @@ import java.util.TreeSet;
  * @since 4.6
  */
 @DisableCachingByDefault(because = "Not made cacheable, yet")
+@SuppressWarnings("deprecation")
 public abstract class GenerateSwiftPackageManagerManifest extends DefaultTask {
     private final String projectName;
 

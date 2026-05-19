@@ -27,5 +27,6 @@ import org.gradle.language.nativeplatform.ComponentWithStaticLibrary;
  *
  * @since 4.5
  */
+@SuppressWarnings("deprecation")
 public interface CppStaticLibrary extends CppBinary, ComponentWithStaticLibrary, ComponentWithLinkUsage, ComponentWithRuntimeUsage, ComponentWithOutputs, PublishableComponent {
 }

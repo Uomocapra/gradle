@@ -18,6 +18,7 @@ package org.gradle.swiftpm.internal;
 
 import org.gradle.nativeplatform.Linkage;
 
+@SuppressWarnings("deprecation")
 public class DefaultLibraryProduct extends AbstractProduct {
     private final Linkage linkage;
 

@@ -39,6 +39,7 @@ import org.gradle.testing.base.TestSuite;
  * @since 7.3
  */
 @Incubating
+@SuppressWarnings("deprecation")
 public interface JvmComponentDependencies extends PlatformDependencyModifiers, TestFixturesDependencyModifiers, GradleDependencies {
     /**
      * Returns a {@link DependencyCollector} that collects the set of implementation dependencies.

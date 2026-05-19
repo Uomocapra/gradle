@@ -29,6 +29,7 @@ import org.gradle.language.nativeplatform.ComponentWithRuntimeUsage;
  *
  * @since 4.2
  */
+@SuppressWarnings("deprecation")
 public interface CppExecutable extends CppBinary, ComponentWithExecutable, ComponentWithInstallation, ComponentWithOutputs, ComponentWithRuntimeUsage, PublishableComponent {
     /**
      * Returns the executable file to use with a debugger for this executable.

@@ -74,6 +74,7 @@ import java.util.concurrent.Callable;
  *
  * @since 4.6
  */
+@SuppressWarnings("deprecation")
 public abstract class SwiftPackageManagerExportPlugin implements Plugin<Project> {
     private final VcsResolver vcsResolver;
     private final VersionSelectorScheme versionSelectorScheme;

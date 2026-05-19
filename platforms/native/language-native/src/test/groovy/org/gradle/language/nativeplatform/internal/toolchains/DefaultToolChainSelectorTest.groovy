@@ -38,6 +38,7 @@ import static org.gradle.language.swift.SwiftVersion.SWIFT5
 import static org.gradle.language.swift.SwiftVersion.SWIFT6
 
 @UsesNativeServices
+@SuppressWarnings("deprecation")
 class DefaultToolChainSelectorTest extends Specification {
     def registry = Mock(NativeToolChainRegistryInternal)
     def osFamily = Stub(OperatingSystemFamily)

@@ -30,6 +30,7 @@ import org.gradle.nativeplatform.toolchain.internal.PlatformToolProvider;
 /**
  * A configurable view of a component that produces a shared library. This should become public in some form.
  */
+@SuppressWarnings("deprecation")
 public interface ConfigurableComponentWithSharedLibrary extends ComponentWithSharedLibrary, ComponentWithObjectFiles, ComponentWithOutputs, ComponentWithNames {
     PlatformToolProvider getPlatformToolProvider();
 

@@ -18,6 +18,7 @@ package org.gradle.platform.base.internal;
 
 import org.gradle.platform.base.Platform;
 
+@SuppressWarnings("deprecation")
 public interface PlatformResolver<T extends Platform> {
     Class<T> getType();
     T resolve(PlatformRequirement platformRequirement);

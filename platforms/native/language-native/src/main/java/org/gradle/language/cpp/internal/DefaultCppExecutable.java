@@ -48,6 +48,7 @@ import javax.inject.Inject;
 import java.util.Collections;
 import java.util.Set;
 
+@SuppressWarnings("deprecation")
 public class DefaultCppExecutable extends DefaultCppBinary implements CppExecutable, ConfigurableComponentWithExecutable, ConfigurableComponentWithRuntimeUsage, SoftwareComponentInternal {
     private final RegularFileProperty executableFile;
     private final Property<Task> executableFileProducer;

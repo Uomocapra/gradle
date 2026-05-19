@@ -30,6 +30,7 @@ import org.junit.Rule
 import spock.lang.Specification
 
 @UsesNativeServices
+@SuppressWarnings("deprecation")
 class DefaultCppLibraryTest extends Specification {
     @Rule
     TestNameTestDirectoryProvider tmpDir = new TestNameTestDirectoryProvider(getClass())

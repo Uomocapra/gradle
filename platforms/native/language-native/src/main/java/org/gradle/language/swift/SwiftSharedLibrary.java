@@ -26,5 +26,6 @@ import org.gradle.language.nativeplatform.ComponentWithSharedLibrary;
  *
  * @since 4.2
  */
+@SuppressWarnings("deprecation")
 public interface SwiftSharedLibrary extends SwiftBinary, ComponentWithSharedLibrary, ComponentWithRuntimeUsage, ComponentWithLinkUsage, ComponentWithOutputs {
 }

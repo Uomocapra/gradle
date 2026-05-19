@@ -30,6 +30,7 @@ import org.gradle.nativeplatform.Linkage;
  *
  * @since 4.2
  */
+@SuppressWarnings("deprecation")
 public interface CppBinary extends ComponentWithObjectFiles, ComponentWithDependencies, BuildableComponent {
     /**
      * The dependency resolution attribute use to indicate whether a binary is debuggable or not.

@@ -19,6 +19,7 @@ package org.gradle.platform.base.internal.toolchain;
 import org.gradle.platform.base.Platform;
 import org.gradle.platform.base.ToolChain;
 
+@SuppressWarnings("deprecation")
 public interface ToolChainInternal<T extends Platform> extends ToolChain {
     /**
      * Locates the tools that can target the given platform.

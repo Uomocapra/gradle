@@ -30,6 +30,7 @@ import org.gradle.util.internal.GUtil;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+@SuppressWarnings("deprecation")
 public class NativeVariantIdentity implements SoftwareComponentInternal, ComponentWithCoordinates {
     private final String name;
     private final Provider<String> baseName;

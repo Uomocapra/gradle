@@ -33,6 +33,7 @@ import javax.inject.Inject;
 import java.util.Arrays;
 import java.util.concurrent.Callable;
 
+@SuppressWarnings("deprecation")
 public abstract class DefaultCppComponent extends DefaultNativeComponent implements CppComponent, ComponentWithNames {
     private final FileCollection cppSource;
     private final String name;

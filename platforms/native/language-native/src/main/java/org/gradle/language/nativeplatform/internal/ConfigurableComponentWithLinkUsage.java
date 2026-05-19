@@ -28,6 +28,7 @@ import org.jspecify.annotations.Nullable;
 /**
  * A configurable view of a component that has a link usage. This should become public in some form.
  */
+@SuppressWarnings("deprecation")
 public interface ConfigurableComponentWithLinkUsage extends ComponentWithLinkUsage, ComponentWithNames {
     Configuration getImplementationDependencies();
 

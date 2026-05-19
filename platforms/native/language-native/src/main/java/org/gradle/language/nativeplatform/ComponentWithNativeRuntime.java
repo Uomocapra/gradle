@@ -26,6 +26,7 @@ import org.gradle.nativeplatform.toolchain.NativeToolChain;
  *
  * @since 4.5
  */
+@SuppressWarnings("deprecation")
 public interface ComponentWithNativeRuntime extends SoftwareComponent {
     /**
      * Returns the base name of this component. This is used to calculate output file names.

@@ -20,6 +20,7 @@ import org.gradle.language.cpp.CppPlatform;
 import org.gradle.nativeplatform.TargetMachine;
 import org.gradle.nativeplatform.platform.NativePlatform;
 
+@SuppressWarnings("deprecation")
 public class DefaultCppPlatform implements CppPlatform {
     private final TargetMachine targetMachine;
     private final NativePlatform nativePlatform;

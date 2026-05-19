@@ -37,6 +37,7 @@ import org.gradle.nativeplatform.toolchain.internal.PlatformToolProvider;
 import javax.inject.Inject;
 import java.util.Collections;
 
+@SuppressWarnings("deprecation")
 public abstract class DefaultSwiftLibrary extends DefaultSwiftComponent<SwiftBinary> implements SwiftLibrary {
     private final ConfigurationContainer configurations;
     private final DefaultLibraryDependencies dependencies;

@@ -32,6 +32,7 @@ import org.gradle.nativeplatform.toolchain.internal.PlatformToolProvider;
 
 import javax.inject.Inject;
 
+@SuppressWarnings("deprecation")
 public abstract class DefaultCppApplication extends DefaultCppComponent implements CppApplication, PublicationAwareComponent {
     private final MainExecutableVariant mainVariant;
     private final DefaultComponentDependencies dependencies;

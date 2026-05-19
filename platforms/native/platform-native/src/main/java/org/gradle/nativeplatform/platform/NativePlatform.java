@@ -37,6 +37,7 @@ import org.gradle.platform.base.Platform;
  * </pre>
  */
 @HasInternalProtocol
+@SuppressWarnings("deprecation")
 public interface NativePlatform extends Platform, Describable {
     /**
      * The cpu architecture being targeted. Defaults to the default architecture produced by the tool chain.

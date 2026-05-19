@@ -22,6 +22,7 @@ import org.gradle.nativeplatform.TargetMachine;
 
 import java.util.Objects;
 
+@SuppressWarnings("deprecation")
 public class DefaultTargetMachine implements TargetMachine {
     private final OperatingSystemFamily operatingSystemFamily;
     private final MachineArchitecture architecture;
