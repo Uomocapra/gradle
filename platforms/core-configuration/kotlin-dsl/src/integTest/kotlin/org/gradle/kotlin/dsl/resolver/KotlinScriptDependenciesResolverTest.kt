@@ -33,7 +33,6 @@ import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertSame
 import org.junit.Assert.assertTrue
 import org.junit.Before
-import org.junit.Ignore
 import org.junit.Test
 import org.junit.experimental.categories.Category
 import org.mockito.kotlin.doReturn
@@ -234,7 +233,6 @@ class KotlinScriptDependenciesResolverTest : AbstractKotlinIntegrationTest() {
     }
 
     @Test
-    @Ignore // TODO
     fun `report file fatality on early build configuration failure`() {
         // thus disabling syntax highlighting
 
@@ -259,7 +257,6 @@ class KotlinScriptDependenciesResolverTest : AbstractKotlinIntegrationTest() {
     }
 
     @Test
-    @Ignore // TODO
     fun `report file warning on early build configuration failure when reusing previous dependencies`() {
 
         withKotlinBuildSrc()
