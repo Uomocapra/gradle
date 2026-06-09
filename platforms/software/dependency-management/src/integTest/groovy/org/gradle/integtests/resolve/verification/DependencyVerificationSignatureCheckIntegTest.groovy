@@ -1338,6 +1338,75 @@ If the artifacts are trustworthy, you will need to update the gradle/verificatio
 
     }
 
+    @Issue("https://github.com/gradle/gradle/issues/37538")
+    def "verifies and preserves origin and reason on globally trusted keys"() {
+        createMetadataFile {
+            keyServer(keyServerFixture.uri)
+            verifySignatures()
+            addGloballyTrustedKey(validPublicKeyHexString, "org", null, null, null, false, "https://example.com/key.asc", "verified manually")
+        }
+
+        given:
+        javaLibrary()
+        uncheckedModule("org", "foo", "1.0") {
+            withSignature {
+                signAsciiArmored(it)
+            }
+        }
+        buildFile << """
+            dependencies {
+                implementation "org:foo:1.0"
+            }
+        """
+
+        when:
+        serveValidKey()
+
+        then:
+        succeeds ":compileJava"
+
+        and: "origin and reason are preserved in the metadata file"
+        def metadata = file("gradle/verification-metadata.xml").text
+        metadata.contains('dependency-verification-1.4.xsd')
+        metadata.contains('origin="https://example.com/key.asc"')
+        metadata.contains('reason="verified manually"')
+    }
+
+    @Issue("https://github.com/gradle/gradle/issues/37538")
+    def "verifies and preserves origin and reason on artifact specific trusted pgp keys"() {
+        createMetadataFile {
+            keyServer(keyServerFixture.uri)
+            verifySignatures()
+            addTrustedKeyWithMetadata("org:foo:1.0", validPublicKeyHexString, "https://example.com/key.asc", "verified manually")
+            addTrustedKeyWithMetadata("org:foo:1.0", validPublicKeyHexString, "https://example.com/key.asc", "verified manually", "pom", "pom")
+        }
+
+        given:
+        javaLibrary()
+        uncheckedModule("org", "foo", "1.0") {
+            withSignature {
+                signAsciiArmored(it)
+            }
+        }
+        buildFile << """
+            dependencies {
+                implementation "org:foo:1.0"
+            }
+        """
+
+        when:
+        serveValidKey()
+
+        then:
+        succeeds ":compileJava"
+
+        and: "origin and reason are preserved in the metadata file"
+        def metadata = file("gradle/verification-metadata.xml").text
+        metadata.contains('dependency-verification-1.4.xsd')
+        metadata.contains('origin="https://example.com/key.asc"')
+        metadata.contains('reason="verified manually"')
+    }
+
     def "can mix globally trusted keys and artifact specific keys (trust artifact key = #addLocalKey)"() {
         def keyring = newKeyRing()
         keyServerFixture.registerPublicKey(keyring.publicKey)
