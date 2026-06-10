@@ -170,6 +170,55 @@ class ConfigurationCacheNamedDeserializationIntegrationTest extends AbstractConf
         outputContains("foo = baz")
     }
 
+    def "can load configuration cache with hand-written non-managed Named instance after daemon restart"() {
+        given:
+        file("buildSrc/src/main/java/my/MyNamed.java") << """
+            package my;
+            import org.gradle.api.Named;
+            public class MyNamed implements Named {
+                private final String name;
+                public MyNamed(String name) { this.name = name; }
+                @Override public String getName() { return name; }
+            }
+        """
+
+        buildFile """
+            import my.MyNamed
+
+            abstract class ShowNamed extends DefaultTask {
+                @Internal
+                MyNamed value
+
+                @TaskAction
+                void show() {
+                    println("name = " + value.name)
+                }
+            }
+
+            tasks.register("show", ShowNamed) {
+                value = new MyNamed("foo")
+            }
+        """
+        def configurationCache = new ConfigurationCacheFixture(this)
+
+        when:
+        configurationCacheRun("show")
+
+        then:
+        configurationCache.assertStateStored()
+        outputContains("name = foo")
+
+        when:
+        stopDaemons()
+
+        and:
+        configurationCacheRun("show")
+
+        then:
+        configurationCache.assertStateLoaded()
+        outputContains("name = foo")
+    }
+
     void stopDaemons() {
         executer.withArguments("--stop", "--info").run()
     }
