@@ -1636,12 +1636,14 @@ Found the following transformation chains:
             }.files
 
             task queryFiles {
+                inputs.files(configFiles)
                 doLast {
                     println "files: " + configFiles.collect { it.name }
                 }
             }
 
             task queryView {
+                inputs.files(configView)
                 doLast {
                     println "files: " + configView.collect { it.name }
                 }
