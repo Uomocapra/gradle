@@ -1,0 +1,69 @@
+#!/bin/bash
+#
+# Copyright 2026 the original author or authors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# Post-build hook: stores every populated integration-test Gradle user home
+# (intTestHomeDir/distributions-*) to the Develocity artifact cache for later builds to restore.
+
+set -euo pipefail
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=common.sh
+source "${SCRIPT_DIR}/common.sh"
+
+setUpArtifactCache || exit 0
+
+if [ ! -d "${INT_TEST_HOME_DIR}" ]; then
+  echo "No integration-test Gradle user home at ${INT_TEST_HOME_DIR} - nothing to store."
+  exit 0
+fi
+
+storeDistribution() {
+  local gradleHome="$1"
+  local dist
+  dist="$(basename "${gradleHome}")"          # e.g. distributions-full
+  dist="${dist#distributions-}"               # -> full
+  local imageName
+  imageName="$(imageNameFor "${dist}")"
+
+  echo "Storing integration-test Gradle user home '${gradleHome}' to image '${imageName}'..."
+  local start_time
+  start_time="$(date +%s)000"
+
+  # Do not fail the build if a store errors.
+  set +e
+  "${AC_CLI_JAVA}" -jar "${AC_CLI_JAR}" \
+    store \
+    --dv-edge="${DEVELOCITY_SERVER_URL}" \
+    --image-name="${imageName}" \
+    --gradle-home="${gradleHome}" \
+    --reporting-directory="build/artifact-cache-report/store/distributions-${dist}" \
+    --cache-metrics-file="build/artifact-cache-metrics/store-distributions-${dist}.json" \
+    --operation-timeout=PT10M \
+    --verbose
+  local exitCode=$?
+  set -e
+
+  local end_time
+  end_time="$(date +%s)000"
+  echo "Storing '${gradleHome}' finished in $((end_time - start_time)) ms with exit code ${exitCode}."
+}
+
+shopt -s nullglob
+for gradleHome in "${INT_TEST_HOME_DIR}"/distributions-*/; do
+  # Only store homes that actually have a dependency cache.
+  if [ -d "${gradleHome}caches/modules-2" ]; then
+    storeDistribution "${gradleHome%/}"
+  fi
+done
