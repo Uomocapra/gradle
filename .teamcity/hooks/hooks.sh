@@ -55,7 +55,7 @@ fi
 
 for dist in ${INT_TEST_DISTRIBUTIONS}; do
   gradleHome="${INT_TEST_HOME_DIR}/distributions-${dist}"
-  imageName="gradle-integtest-${baseBranch}-distributions-${dist}"
+  imageName="gradle-SmokeTest-${baseBranch}-distributions-${dist}"
 
   if [[ "${PHASE}" == "pre" ]]; then
     mkdir -p "${gradleHome}"
