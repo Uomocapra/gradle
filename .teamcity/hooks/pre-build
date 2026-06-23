@@ -14,47 +14,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# Pre-build hook: restores the integration-test Gradle user homes (intTestHomeDir/distributions-*)
-# from the Develocity artifact cache so smoke tests resolve dependencies locally instead of downloading.
+# Pre-build hook entry point (file name required by the teamcity-hooks-plugin).
+# All logic lives in hooks.sh.
 
 set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-# shellcheck source=common.sh
-source "${SCRIPT_DIR}/common.sh"
-
-setUpArtifactCache || exit 0
-
-restoreDistribution() {
-  local dist="$1"
-  local gradleHome="${INT_TEST_HOME_DIR}/distributions-${dist}"
-  local imageName
-  imageName="$(imageNameFor "${dist}")"
-
-  mkdir -p "${gradleHome}"
-
-  echo "Restoring integration-test Gradle user home '${gradleHome}' from image '${imageName}'..."
-  local start_time
-  start_time="$(date +%s)000"
-
-  # Do not fail the build if a restore misses or errors; tests then download as before.
-  set +e
-  "${AC_CLI_JAVA}" -jar "${AC_CLI_JAR}" \
-    restore \
-    --dv-edge="${DEVELOCITY_SERVER_URL}" \
-    --image-name="${imageName}" \
-    --gradle-home="${gradleHome}" \
-    --reporting-directory="build/artifact-cache-report/restore/distributions-${dist}" \
-    --cache-metrics-file="build/artifact-cache-metrics/restore-distributions-${dist}.json" \
-    --operation-timeout=PT10M \
-    --verbose
-  local exitCode=$?
-  set -e
-
-  local end_time
-  end_time="$(date +%s)000"
-  echo "Restoring '${gradleHome}' finished in $((end_time - start_time)) ms with exit code ${exitCode}."
-}
-
-for dist in ${INT_TEST_DISTRIBUTIONS}; do
-  restoreDistribution "${dist}"
-done
+exec "${SCRIPT_DIR}/hooks.sh" pre
