@@ -69,8 +69,8 @@ import org.gradle.internal.serialize.graph.readClassOf
 import org.gradle.internal.serialize.graph.readNonNull
 import org.gradle.internal.serialize.graph.runReadOperation
 import org.gradle.internal.serialize.graph.serviceOf
+import org.gradle.internal.serialize.graph.withCodec
 import org.gradle.internal.serialize.graph.withDebugFrame
-import org.gradle.internal.serialize.graph.withImmediateMode
 import org.gradle.internal.serialize.graph.withIsolate
 import org.gradle.internal.serialize.graph.withPropertyTrace
 
@@ -282,7 +282,18 @@ object BuildServiceParameterCodec : Codec<BuildServiceParameters> {
 }
 
 
-object ValueSourceProviderCodec : Codec<ValueSourceProvider<*, *>> {
+/**
+ * @param newUserTypeCodecs creates a fresh, independent set of user-type codecs. A new set is needed
+ * when decoding the parameters of a value source: the parameters are read inside a nested
+ * [runReadOperation], which starts a fresh coroutine that cannot suspend. The shared codec set wraps
+ * [BeanCodec] in a stateful `reentrant` codec, and that wrapper suspends on a nested decode if an
+ * outer decode is still in progress (as is the case here, when one value source's parameters
+ * reference another value source). Decoding through a fresh codec set gives the `reentrant` wrapper
+ * clean state so it can unfold its trampoline to completion within the nested coroutine.
+ */
+class ValueSourceProviderCodec(
+    private val newUserTypeCodecs: () -> Codec<Any?>
+) : Codec<ValueSourceProvider<*, *>> {
 
     override suspend fun WriteContext.encode(value: ValueSourceProvider<*, *>) {
         writeSharedObject(value) {
@@ -337,7 +348,7 @@ object ValueSourceProviderCodec : Codec<ValueSourceProvider<*, *>> {
             ) { providerInstance ->
                 readContext.runReadOperation {
                     sharedIdentities.putInstance(id, providerInstance)
-                    withImmediateMode {
+                    withCodec(newUserTypeCodecs()) {
                         read()!!.uncheckedCast()
                     }
                 }
